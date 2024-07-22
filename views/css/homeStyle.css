@@ -1,11 +1,46 @@
 *{
     padding: 0;
     margin: 0;
+    color: white;
+   
+}
+
+#home_page{
+    background-image: linear-gradient(180deg, rgb(0, 0, 0), #4e7aa6);
+
+    font-style: oblique;
+}
+#cate_title{
+    background-image: linear-gradient(-180deg, #4e7aa6, #414b7a);
+    font-style: italic;
+}
+
+#nav-div{
+    background: linear-gradient(45deg, #4e7aa6, #000000);
+}
+#card{
+    background: linear-gradient(-45deg, #0a325a, #aa9d9d);
+    border-radius: 5%;
+    
+    
+}
+#card:hover{
+    box-shadow: 1px 1px 15px rgba(0,0,0,1),-1px 0 15px rgba(0,0,0,1);
+
+}
+#vibe_section{
+    background-image: linear-gradient(180deg, rgb(0, 0, 0), #4e7aa6);
 }
 .nav-bar-image{
     height: 48px;
     
+    
 }
+#navbarNav .nav-link {
+    /* Your styles here */
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+  }
 
 /* mood icon imag */
 .card-img-top{

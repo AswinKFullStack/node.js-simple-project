@@ -3,6 +3,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
 const path = require('path');
 const app = express();
@@ -17,21 +18,28 @@ app.use(express.static(path.join(__dirname,"views")));
 app.use(express.urlencoded({ extended: true }));
 
 
-
+//session handling
 app.use(cookieParser());
 app.use(session({
     secret: 'my_secret_key',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false , 
-        maxAge: 1000 * 60 * 60 * 24 }
+    cookie: { secure: false , maxAge: 24 * 60 * 60 * 1000 
+         }
 }));
+//FOR avoiding , once the user has signed out, the home page shouldn't be loaded on pressing the back button. 
 
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store');
+    next();
+});
+
+//setting handlebars 
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
-
+//assume this dynamic data from database
 const categories = {
     
     Happy: [
@@ -47,16 +55,21 @@ const categories = {
     ]
   };
 
-
+//routing sections
 
 app.get('/',(req,res)=>{
     if(req.session.loggin){
         res.redirect('/home');
     }else{
-        res.render('login')
+        res.redirect('/login');
     }
     
 })
+
+app.get('/login',isAuth, (req, res) => {
+    console.log("user want to loggin for home page");
+    res.render('login', { errorMessage: req.query.message });
+});
 
 app.post('/login',(req,res)=>{
     const body = req.body;
@@ -70,12 +83,20 @@ app.post('/login',(req,res)=>{
         res.redirect('/home');
         
     }else{
-        res.render('login',{errorMessage : 'Incorrect username or password'});
-        console.log(req.query.message);
+       
+       res.redirect('/login?message=Incorrect%20Username%20or%20Password');
     }
     
 });
-
+function isAuth(req,res,next){
+    
+    if( req.session.loggin ){
+        console.log("user already loggined")
+        return res.redirect('/home');
+    }else{
+        next();
+    }
+}
 
 
 
@@ -94,14 +115,19 @@ app.get('/home',(req,res)=>{
     
 })
 
+
+
+
 app.post('/signout',(req,res)=>{
     req.session.destroy((err)=>{
+
         if(err){
              res.redirect('/');
              return;
         }
-        
-        res.redirect('/');
+        console.log("user signouted");
+        res.clearCookie('connect.sid');
+        res.redirect('/login');
     })
    
 })

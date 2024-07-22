@@ -12,7 +12,7 @@
   </head>
   <body>
     <!--Navigation bar -->
-    <header class="container-fluid">
+    <header class="container-fluid" id="nav-div">
         <div class="row">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
@@ -45,12 +45,12 @@
     </header>
     <!-- introduction -->
     
-    <section>
+    <section id="home_page" >
         <div class="container-fluid">
             <div class="row">
                 
-                        <div class="title p-4">
-                          <h2>Hi... {{username}}</h2>
+                        <div class="title p-5">
+                          <h6>Hi... {{username}}</h6>
                             <h1>MoodTunes</h1>
                             <h3>Welcome to MoodTunes: Your Ultimate Music Link Organizer and Player</h3>
                         </div>
@@ -67,15 +67,21 @@
     </section>
     
     <!-- the collections -->
-     <div class="row">
+    <section>
+        <div class="constiner">
+            <div  id="cate_title">
                 <div class="col-md-12 text-center p-4">
                     <h2>Playlist Categories</h2>
                 </div>
-     </div>
+            </div>
+
+        </div>
+    </section>
+     
 
 
     {{#each categories}}
-    <section>
+    <section id="vibe_section">
         <div class="container">
             <!-- this row for one mood -->
             <div class="row">
@@ -83,9 +89,9 @@
                  <div class="col-md-12 text-center p-4">
                     <h3>{{@key}}</h3>
                 </div>
-                <div class="card-group p-4">
+                <div class="card-group p-3 container">
                  {{#each this}}
-                    <div class="card m-1">
+                    <div class="card m-1 col-md-3 pt-3" id="card">
                       <img src="{{this.image}}" class="card-img-top" alt="...">
                       <div class="card-body">
                         <h5 class="card-title">{{this.title}}</h5>
