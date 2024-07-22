@@ -1,0 +1,14 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.nav-bar-image{
+    height: 48px;
+    
+}
+
+/* mood icon imag */
+.card-img-top{
+    width: 100%;
+    height: 150px;
+}
