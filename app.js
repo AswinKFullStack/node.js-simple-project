@@ -27,7 +27,6 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 }
 }));
 
-
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
@@ -47,13 +46,7 @@ const categories = {
       { title: 'Rise and Shine', description: 'Motivation songs for Hard Work', image: '/images/hardwork.jpeg' }
     ]
   };
-//for checking the user logginn
-  app.use((req, res, next) => {
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    next();
-});
+
 
 
 app.get('/',(req,res)=>{
@@ -78,6 +71,7 @@ app.post('/login',(req,res)=>{
         
     }else{
         res.render('login',{errorMessage : 'Incorrect username or password'});
+        console.log(req.query.message);
     }
     
 });

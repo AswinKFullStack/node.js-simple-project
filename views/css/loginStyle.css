@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    color: #fff;
 }
 body {
     background: linear-gradient(45deg, #001a34, #000000);
@@ -10,14 +11,19 @@ form {
     text-align: center;
     
 }
+.text-muted{
+    color: white !important;
+}
 .login {
+    
     width: 400px;
     font-size: 16px;
     position: absolute;
     left: 50%;
     top: 50%;
+    transform: translate(-50%, 25%);
     box-shadow: 0 5px 6px #00000036;
-    transform: translate(-50%, 50%);
+    
     border-radius: 22px;
     overflow: hidden;
     transition: 1s;
@@ -43,8 +49,8 @@ img {
 .form-group {
     padding: 12px;
 }
-.label{
-    color: rgb(170, 170, 170);
+#emailHelp{
+    color: rgb(255, 255, 255) !important;
 }
 .login-input{
     box-sizing: border-box;
@@ -59,9 +65,9 @@ img {
 .login-input[type="password"] {
     background: #fff;
     border-color: #bbb;
-    color: rgb(170, 170, 170);
+    color: rgb(0, 0, 0);
     border: none;
-    background-color: transparent;
+    
     border-bottom: 1px solid #c0c0c03b;
     padding-left: 0;
     padding-bottom: 10px;
@@ -100,9 +106,16 @@ img {
 .hide-login {
     width: 165px;
     height: 167px;
-    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 150%);
+    
+    
     
 }
 #error-message{
     color: red;
+    font-size: larger;
+    font-weight: 600;
 }
